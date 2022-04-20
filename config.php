@@ -7,7 +7,7 @@ $password = '';
 $portt = '3307';
 
 $base_url = "https://the-metasoft.tk/Startmine_api/";
-$api_key = 'QnVLNHRm-M1M3eEd4-UWJ4ZTBR-YW9UU2py-L2JGVDRX-UEdSek95dz0=';
+$api_key = "10001200-AAGGDDSE-99332299-ssttmmnn";
 
 
 define('DB_HOST',$hostname);

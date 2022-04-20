@@ -17,28 +17,30 @@ class apiController {
         
     }
 
-    public function sendverificationemail() //200= success, 201 = fail
+    public function sendverificationemail() //200= success, 201 = fail, 111= email exists, 101=username exists, 1001=error
     {
         $data = json_decode(file_get_contents("php://input"));
         if($data!=null && isset($data['email'])){
             $this->loadUtails();
 
-            $otp = substr(md5(uniqid(rand(), true)), 16, 6);
-
             $email['email'] = $data['email'];
-            $email['subject'] ="Startmine verification code";
-            $email['msg'] = "Welcome to Startmine, your verification code for email:- ".
-            $data['email']." is ".$otp." \nPlease do not share code with anyone.";
+            $email['subject'] ="Smartmine verification email";
+
+            $str = strval(file_get_contents('/templates/email_template.php',false));
+            $url = BASE_URL.'verify.php?token='. encrypt_password($email);
+
+            str_replace('aaaaaaaaaaaaaaaa',$url,$str);
+
+            $email['msg'] = $str;
 
             if($this->Utails->SendEmmail($email)){
 
-                $output['code'] = '200';
-                $output['msg'] = $otp;
+                $output['code']= "200";
+                $output['msg'] = "success";
 
             }else{
-                $output['code'] = '201';
-                $output['msg'] = 'faild to send email';
-
+                $output['code']= "101";
+                $output['msg'] = "faild to send email";
             }
 
             echo json_encode($output);
@@ -50,7 +52,7 @@ class apiController {
 
     }
 
-    public function emailSignup() //200=success, 111= email exists, 101=username exists, 1001=error
+    public function emailSignup() //200=success, 111= email exists, 101=username exists, 201=email send fail 1001=error
     {
         
         $data = json_decode(file_get_contents("php://input"));
@@ -61,14 +63,38 @@ class apiController {
             
             $check = $this->Username->check_signup_data($data['email'], $data['username']);
             if($check['code'] == '200'){
-                if($this->User->CreateUser()){
-                    $output['code'] = "200";
-                    $output['msg'] = "signup successfull";
+                $email['email'] = $data['email'];
+                $email['subject'] ="Smartmine verification email";
+
+                $str = strval(file_get_contents('/templates/email_template.php',false));
+                $url = BASE_URL.'verify.php?token='. encrypt_password($email);
+
+                str_replace('aaaaaaaaaaaaaaaa',$url,$str);
+
+                $email['msg'] = $str;
+
+                if($this->Utails->SendEmmail($email)){
+
+                    if($this->User->CreateUser()){
+                    
+                        $output['code'] = "200";
+                        $output['msg'] = "signup successfull";
+
+                        $dat['email'] = $data=['email'];
+                        $output['user'] = $this->User->getdetails($dat);
+    
+                    }else{
+                        $output['code'] = "1001";
+                        $output['msg'] = "failed error:- ".$this->User->conn->error;
+                    }
 
                 }else{
-                    $output['code'] = "1001";
-                    $output['msg'] = "failed error:- ".$this->User->conn->error;
+                    $output['code'] = '201';
+                    $output['msg'] = 'faild to send email';
+
                 }
+
+            
             }else{
                 $output = $check;
             }
