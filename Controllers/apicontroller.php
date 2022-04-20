@@ -82,7 +82,7 @@ class apiController {
                         $output['code'] = "200";
                         $output['msg'] = "signup successfull";
 
-                        $dat['email'] = $data=['email'];
+                        $dat['email'] = $data['email'];
                         $output['user'] = $this->User->getdetails($dat);
     
                     }else{

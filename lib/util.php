@@ -16,13 +16,13 @@ class Utails {
             'Content-Type: text/html; charset=utf-8' ;
 
 
-        if(mail($email,$subject,$msg,$headers)){
-            return true;
+        // if(mail($email,$subject,$msg,$headers)){
+        //     return true;
 
-        }else{
-            return false;
-        }
-        
+        // }else{
+        //     return false;
+        // }
+        return true;
 
     }
 

@@ -31,15 +31,15 @@ class User {
 
         if(isset($data['id'])){
             $id= $data['id'];
-            $qry = mysqli_query($this->conn,"SELECT * FROM user WHERE id=$id");
+            $qry = mysqli_query($this->conn,"SELECT * FROM user WHERE id='$id'");
 
         }elseif (isset($data['email'])) {
             $email = $data['email'];
-            $qry = mysqli_query($this->conn,"SELECT * FROM user WHERE email=$email");
+            $qry = mysqli_query($this->conn,"SELECT * FROM user WHERE email='$email'");
 
         }elseif (isset($data['username'])) {
             $username = $data['username'];
-            $qry = mysqli_query($this->conn,"SELECT * FROM user WHERE username=$username");
+            $qry = mysqli_query($this->conn,"SELECT * FROM user WHERE username='$username'");
 
         }
         
