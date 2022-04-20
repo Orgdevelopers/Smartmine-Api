@@ -137,7 +137,6 @@
                                         </tr>
                                     </tbody>
                                 </table>
-
                                 <table id="u_content_button_1" style="font-family:arial,helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
                                     <tbody>
                                         <tr>
