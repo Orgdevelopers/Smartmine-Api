@@ -103,7 +103,12 @@ class apiController {
             die;
 
         }else{
-            empty_data();
+            $output['code'] = '499';
+            $output['msg'] = 'failed'.$data;
+
+            echo json_encode($output);
+            die;
+
         }
         
     }

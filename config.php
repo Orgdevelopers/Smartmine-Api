@@ -1,12 +1,12 @@
 <?php
 
 $hostname = "localhost";
-$database   = "startmine_db";
-$db_user = 'root';
-$password = '';
+$database   = "u287598557_Smartmine";
+$db_user = 'u287598557_Smartmine';
+$password = 'Zeesh@n007008';
 $portt = '3307';
 
-$base_url = "https://the-metasoft.tk/Startmine_api/";
+$base_url = "https://hashcoiner.com/";
 $api_key = "10001200-AAGGDDSE-99332299-ssttmmnn";
 
 
