@@ -52,7 +52,7 @@ class apiController {
 
     }
 
-    public function emailSignup() //200=success, 111= email exists, 101=username exists, 201=email send fail 1001=error
+    public function emailsignup() //200=success, 111= email exists, 101=username exists, 201=email send fail 1001=error
     {
         
         $data = json_decode(file_get_contents("php://input"));

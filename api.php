@@ -4,7 +4,7 @@
 
 
 if($_SERVER['PATH_INFO']!="/"){
-    $headers['API-KEY'] =  apache_request_headers();
+    $headers =  apache_request_headers();
     if(isset($headers['API-KEY']) && verify_api_key($headers['API-KEY'])){
         
         require_once("lib/util.php");
