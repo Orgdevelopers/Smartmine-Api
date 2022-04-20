@@ -19,10 +19,10 @@ class Utails {
         // $headers .= "MIME-Version: 1.0\r\n";
         // $headers .= "Content-Type: text/html; charset=iso-8859-1\n";
 
-        $headers = 'From: info@hashcoiner.com' . "\r\n" .
+        $headers = 'From: Smartmine Support <info@hashcoiner.com>' . "\r\n" .
             'Reply-To: info@hashcoiner.com' . "\r\n" .
             'X-Mailer: PHP/' . phpversion(). "\r\n" .
-            'Content-Type: text/html; charset=utf-8' ;
+            'Content-Type: text/html; charset=iso-8859-1' ;
        
 
 
