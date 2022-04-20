@@ -12,7 +12,7 @@ class apiController {
             $this->$request();
 
         } catch (\Throwable $th) {
-            $this->no_method();
+            $this->no_method($th);
         }
         
     }
@@ -235,9 +235,9 @@ class apiController {
 
     }
 
-    public function no_method(){
-        $echo['code']='101';
-        $echo['msg']="method desen't exists    ".str_replace('/','',$_SERVER['PATH_INFO']);
+    public function no_method($th){
+        $echo['code']='10101';
+        $echo['msg']="method desen't exists:-".str_replace('/','',$_SERVER['PATH_INFO']).$th;
         echo json_encode($echo);
         die;
     }
