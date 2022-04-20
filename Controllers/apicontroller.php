@@ -19,7 +19,7 @@ class apiController {
 
     public function sendverificationemail() //200= success, 201 = fail, 111= email exists, 101=username exists, 1001=error
     {
-        $data = json_decode(file_get_contents("php://input"));
+        $data = $_POST;
         if($data!=null && isset($data['email'])){
             $this->loadUtails();
 
@@ -55,13 +55,14 @@ class apiController {
     public function emailsignup() //200=success, 111= email exists, 101=username exists, 201=email send fail 1001=error
     {
         
-        $data = json_decode(file_get_contents("php://input"));
+        $data = $_POST;
+
         if($data!=null && isset($data['email']) && isset($data['username']) && isset($data['password'])){
             $this->loadModel('User');
             $this->User->date = gmdate("Y-m-d H:i:s");
             $this->User->data = $data;
             
-            $check = $this->Username->check_signup_data($data['email'], $data['username']);
+            $check = $this->User->check_signup_data($data['email'], $data['username']);
             if($check['code'] == '200'){
                 $email['email'] = $data['email'];
                 $email['subject'] ="Smartmine verification email";
@@ -104,8 +105,8 @@ class apiController {
 
         }else{
             $output['code'] = '499';
-            $output['msg'] = 'failed'.$data;
-
+            $output['msg'] = 'failed';
+        
             echo json_encode($output);
             die;
 
@@ -115,7 +116,7 @@ class apiController {
 
     public function getuserdetails() //200=success, 201=no user, 101=error+error reson;
     {
-        $data = json_decode(file_get_contents("php://input"));
+        $data = $_POST;
         if($data!=null){
             if(isset($data['username']) || isset($data['email']) || isset($data['id'])){
                 $this->loadModel('User');
@@ -149,7 +150,7 @@ class apiController {
     public function emaillogin() //200=success, 201=wrong pass,211 = user not, 101=error
     {
 
-        $data = json_decode(file_get_contents("php://input"));
+        $data = $_POST;
         if($data!=null){
             if(isset($data['email']) && isset($data['password'])){
                 $this->loadModel('User');
@@ -189,7 +190,7 @@ class apiController {
 
     public function updateuser()
     {
-        $data = json_decode(file_get_contents("php://input"));
+        $data = $_POST;
 
         if($data!=null && isset($data['id'])){
             $this->loadModel('User');
@@ -215,7 +216,7 @@ class apiController {
 
     public function uploadpic()
     {
-        $data = json_decode(file_get_contents("php://input"));
+        $data = $_POST;
 
         if ($data!=null && isset($data['pic'])) {
             
