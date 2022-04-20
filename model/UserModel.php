@@ -57,7 +57,7 @@ class User {
 
     public function check_signup_data($email,$username)
     {
-        $email_check = mysqli_fetch_array(mysqli_query($this->conn, "SELECT * FROM user WHERE email=$email"));
+        $email_check = mysqli_fetch_array(mysqli_query($this->conn, "SELECT * FROM user WHERE email='$email'"));
         if($email_check){
             //email alredy exists
             $output['code'] = '111';
@@ -65,7 +65,7 @@ class User {
             return $output;
         }
 
-        $username_check = mysqli_fetch_array(mysqli_query($this->conn, "SELECT * FROM user WHERE username=$username"));
+        $username_check = mysqli_fetch_array(mysqli_query($this->conn, "SELECT * FROM user WHERE username='$username'"));
 
         if($username_check){
             //username alredy exists
