@@ -68,7 +68,7 @@ class apiController {
                 $email['email'] = $data['email'];
                 $email['subject'] ="Smartmine verification email";
 
-                $str = strval(file_get_contents('/templates/email_template.php',false));
+                $str = strval(file_get_contents('../templates/email_template.php',false));
                 $url = BASE_URL.'verify.php?token='. encrypt_password($email);
 
                 str_replace('aaaaaaaaaaaaaaaa',$url,$str);

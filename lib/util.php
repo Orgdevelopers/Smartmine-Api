@@ -10,18 +10,28 @@ class Utails {
         $subject = $data['subject'];
         $msg = $data['msg'];
 
+        // $headers  = "From: Smartmine Support <info@hashcoiner.com>\n";
+        // //$headers .= "Cc: testsite <mail@testsite.com>\n"; 
+        // $headers .= "X-Sender: Smartmine Support <info@hashcoiner.com>\n";
+        // $headers .= 'X-Mailer: PHP/' . phpversion();
+        // $headers .= "X-Priority: 1\n"; // Urgent message!
+        // $headers .= "Return-Path: info@hashcoiner.com\n"; // Return path for errors
+        // $headers .= "MIME-Version: 1.0\r\n";
+        // $headers .= "Content-Type: text/html; charset=iso-8859-1\n";
+
         $headers = 'From: info@hashcoiner.com' . "\r\n" .
             'Reply-To: info@hashcoiner.com' . "\r\n" .
             'X-Mailer: PHP/' . phpversion(). "\r\n" .
             'Content-Type: text/html; charset=utf-8' ;
+       
 
 
-        // if(mail($email,$subject,$msg,$headers)){
-        //     return true;
+        if(mail($email,$subject,$msg,$headers)){
+            return true;
 
-        // }else{
-        //     return false;
-        // }
+        }else{
+            return false;
+        }
         return true;
 
     }
