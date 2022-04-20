@@ -10,7 +10,9 @@ if($_SERVER['PATH_INFO']!="/"){
         require_once("lib/util.php");
         require_once("model/autoload.php");
         require_once("db/dbconnecter.php");
+        require_once("lib/Functions.php");
         include_once('Controllers/apicontroller.php');
+    
 
         //process next
         $dat = new apiController();
