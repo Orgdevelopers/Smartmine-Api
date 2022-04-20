@@ -11,7 +11,17 @@ if($_SERVER['PATH_INFO']!="/"){
         require_once("model/autoload.php");
         require_once("db/dbconnecter.php");
         require_once("lib/Functions.php");
+
+
+        require 'vendor/phpmailer/phpmailer/phpmailer/src/Exception.php';
+        require 'vendor/phpmailer/phpmailer/phpmailer/src/PHPMailer.php';
+        require 'vendor/phpmailer/phpmailer/phpmailer/src/SMTP.php';
+
+        require 'vendor/phpmailer/autoload.php';
+
         include_once('Controllers/apicontroller.php');
+
+        
     
 
         //process next

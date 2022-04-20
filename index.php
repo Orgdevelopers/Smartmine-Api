@@ -60,6 +60,11 @@
 //     return $btc;
 // }
 
+require 'lib/util.php';
+
+$util = new Utails();
+
+$util->SendEmmail(null);
 
 
 ?>
