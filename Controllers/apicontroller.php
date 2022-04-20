@@ -73,7 +73,7 @@ class apiController {
 
                 str_replace('aaaaaaaaaaaaaaaa',$url,$str);
 
-                $email['ulr'] = $url;
+                $email['url'] = $url;
 
                 if($this->Utails->SendEmmail($email)){
 
@@ -84,6 +84,7 @@ class apiController {
 
                         $dat['email'] = $data['email'];
                         $output['user'] = $this->User->getdetails($dat);
+                        $output['raw_mail']= $str;
     
                     }else{
                         $output['code'] = "1001";
