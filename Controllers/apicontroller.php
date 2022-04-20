@@ -59,6 +59,7 @@ class apiController {
 
         if($data!=null && isset($data['email']) && isset($data['username']) && isset($data['password'])){
             $this->loadModel('User');
+            $this->loadUtails();
             $this->User->date = gmdate("Y-m-d H:i:s");
             $this->User->data = $data;
             
