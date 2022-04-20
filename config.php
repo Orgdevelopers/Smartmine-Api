@@ -1,10 +1,23 @@
 <?php
 
+//mysql database
+
+$smtp_name = "Smartmine Customer Support";
+$smtp_from = "support@domain.com";
 $hostname = "localhost";
 $database   = "u287598557_Smartmine";
 $db_user = 'u287598557_Smartmine';
 $password = 'Zeesh@n007008';
 $portt = '3307';
+
+//email - 
+$smtp_host= "host";
+$smtp_username = "ex@ex.com";
+$smtp_password = "password";
+$smtp_port = 465; // user 25 for vps
+
+$skip_mail = true; //turn this off after setting up smtp
+
 
 $base_url = "https://hashcoiner.com/";
 $api_key = "10001200-AAGGDDSE-99332299-ssttmmnn";
@@ -16,6 +29,14 @@ define('DB_USERNAME',$db_user);
 define('DB_PASSWORD',$password);
 define('DB_PORT',$portt);
 define('BASE_URL',$base_url);
+define('SMTP_HOST',$smtp_host);
+define('SMTP_USERNAME',$smtp_username);
+define('SMTP_PASSWORD',$smtp_password);
+define('SMTP_PORT',$smtp_port);
+define('SMTP_NAME',$smtp_name);
+define('SMTP_FROM',$smtp_from);
+
+define('SKIP_MAIL',$skip_mail);
 
 // $headers = [
 //     "Accept: application/json",

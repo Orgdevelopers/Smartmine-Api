@@ -67,13 +67,7 @@ class apiController {
             if($check['code'] == '200'){
                 $email['email'] = $data['email'];
                 $email['subject'] ="Smartmine verification email";
-
-                $str = strval(file_get_contents('../templates/email_template.php'));
-                $url = BASE_URL.'verify.php?token='. encrypt_password($email);
-
-                str_replace('aaaaaaaaaaaaaaaa',$url,$str);
-
-                $email['url'] = $url;
+                $email['msg'] = "click the link below to verify your Smartmine Account \n"."verification link:-". BASE_URL."verify.php?token=". encrypt_password($data['email']);
 
                 if($this->Utails->SendEmmail($email)){
 
@@ -84,7 +78,7 @@ class apiController {
 
                         $dat['email'] = $data['email'];
                         $output['user'] = $this->User->getdetails($dat);
-                        $output['raw_mail']= $str;
+                    
     
                     }else{
                         $output['code'] = "1001";
