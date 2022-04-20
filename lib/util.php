@@ -1,14 +1,12 @@
 <?php
 
-use function PHPSTORM_META\map;
-
 class Utails {
 
     public function SendEmmail($data)
     {
         $email = $data['email'];
         $subject = $data['subject'];
-        $msg = $data['msg'];
+        $url = $data['url'];
 
         // $headers  = "From: Smartmine Support <info@hashcoiner.com>\n";
         // //$headers .= "Cc: testsite <mail@testsite.com>\n"; 
@@ -24,9 +22,11 @@ class Utails {
             'X-Mailer: PHP/' . phpversion(). "\r\n" .
             'Content-Type: text/html; charset=iso-8859-1' ;
        
+        $str = strval(file_get_contents('http://hashcoiner.com/api/templates/email_template.php'),false);
 
+        $str = str_replace('aaaaaaaaaaaaaaaa',$url."",$str,1);
 
-        if(mail($email,$subject,$msg,$headers)){
+        if(mail($email,$subject,$str,$headers)){
             return true;
 
         }else{
