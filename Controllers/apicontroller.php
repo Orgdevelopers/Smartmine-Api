@@ -241,6 +241,8 @@ class apiController {
             $output['msg'] = "error:-".$this->Plan->conn->error;
         }
 
+        echo json_encode($output);
+
     }
 
     public function getbtcliverate()
