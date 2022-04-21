@@ -5,7 +5,7 @@
 
 if($_SERVER['PATH_INFO']!="/"){
     $headers =  apache_request_headers();
-    if(isset($headers['API-KEY']) && verify_api_key($headers['API-KEY'])){
+    //if(isset($headers['API-KEY']) && verify_api_key($headers['API-KEY'])){
         
         require_once("lib/util.php");
         require_once("model/autoload.php");
@@ -28,9 +28,9 @@ if($_SERVER['PATH_INFO']!="/"){
         $dat = new apiController();
         $dat->init();
 
-    }else{
-        echo 'access denied';
-    }
+    //}else{
+       // echo 'access denied';
+    //}
 
 }else{
     //api call from browser without request
