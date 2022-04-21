@@ -1,6 +1,6 @@
 <?php
 
-echo "config";
+echo "config"; 
 
 ?>
 
