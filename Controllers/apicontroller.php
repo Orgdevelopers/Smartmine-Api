@@ -232,13 +232,13 @@ class apiController {
             $output['code'] = "200";
             $output['msg'] = $plans;
 
-        }else if($plans==null){
+        }else if($this->conn){
             $output['code'] = "201";
             $output['msg'] = "no plans found";
 
         }else{
             $output['code'] = "101";
-            $output['msg'] = "error:-".$this->Plan->conn->error;
+            $output['msg'] = "error:-".$this->conn->error;
         }
 
         echo json_encode($output);
