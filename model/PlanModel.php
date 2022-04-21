@@ -40,6 +40,20 @@ class Plan {
         }
     }
 
+    public function getall()
+    {
+        if($this->conn){
+            $qry = mysqli_query($this->conn,"SELECT * FROM plans");
+
+            $plans = mysqli_fetch_all($qry,1);
+
+            return $plans;
+
+        }else {
+            return false;
+        }
+    }
+
 }
 
 ?>

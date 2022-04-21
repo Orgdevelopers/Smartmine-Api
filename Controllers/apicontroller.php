@@ -223,6 +223,26 @@ class apiController {
 
     }
 
+    public function getallplans() //200 success, 201 no plan, 101 fail server error
+    {
+        $this->loadModel('Plan');
+        $plans = $this->Plan->getall();
+
+        if($plans){
+            $output['code'] = "200";
+            $output['msg'] = $plans;
+
+        }else if($plans==null){
+            $output['code'] = "201";
+            $output['msg'] = "no plans found";
+
+        }else{
+            $output['code'] = "101";
+            $output['msg'] = "error:-".$this->Plan->conn->error;
+        }
+
+    }
+
     public function getbtcliverate()
     {
         $url='https://bitpay.com/api/rates';
