@@ -2,6 +2,5 @@
 
 echo "config";
 
-
 ?>
 
