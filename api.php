@@ -57,6 +57,5 @@ function empty_data(){
     die;
 }
 
-//api commit test
 
 ?>
