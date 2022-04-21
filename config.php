@@ -7,7 +7,7 @@ $hostname = "localhost";
 $database   = "prob_lemdeal";
 $db_user = 'prob_lemdeal';
 $password = 'prob_lemdeal';
-$portt = '3307';
+$portt = 3307;
 
 //email - 
 $smtp_name = "Smartmine Customer Support";
