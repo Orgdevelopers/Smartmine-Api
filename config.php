@@ -2,15 +2,16 @@
 
 //mysql database
 
-$smtp_name = "Smartmine Customer Support";
-$smtp_from = "support@domain.com";
+
 $hostname = "localhost";
-$database   = "u287598557_Smartmine";
-$db_user = 'u287598557_Smartmine';
-$password = 'Zeesh@n007008';
+$database   = "prob_lemdeal";
+$db_user = 'prob_lemdeal';
+$password = 'prob_lemdeal';
 $portt = '3307';
 
 //email - 
+$smtp_name = "Smartmine Customer Support";
+$smtp_from = "support@domain.com";
 $smtp_host= "host";
 $smtp_username = "ex@ex.com";
 $smtp_password = "password";
