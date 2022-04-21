@@ -43,11 +43,11 @@ class Plan {
     public function getall()
     {
         if($this->conn){
-            $qry = mysqli_query($this->conn,"SELECT * FROM plans");
+            $qry = mysqli_query($this->conn, "select * from plans");
 
-            $plans = mysqli_fetch_all($qry,1);
+            $data = mysqli_fetch_all($qry);
 
-            return $plans;
+            return $data;
 
         }else {
             return false;
