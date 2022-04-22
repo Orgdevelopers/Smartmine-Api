@@ -53,6 +53,8 @@ class Transection{
             $output['msg'] = 'err connection';
         }
 
+        return $output;
+
     }
 
     
