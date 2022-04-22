@@ -45,7 +45,7 @@ class Plan {
         if($this->conn){
             $qry = mysqli_query($this->conn, "select * from plans");
 
-            $data = mysqli_fetch_all($qry);
+            $data = mysqli_fetch_all($qry,1);
 
             return $data;
 
