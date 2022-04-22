@@ -242,6 +242,36 @@ class apiController {
         }
 
         echo json_encode($output);
+        die;
+
+    }
+
+    public function confirmtransaction() //200=success, 201=already exists, 111 sql error, 101 = server error
+    {
+        $data = $_POST;
+        if($data!=null && isset($data['id'])){
+
+            $this->loadModel('Transection');
+
+            $trdata['id'] = $data['id'];
+            $check = $this->Transection->getMyPendingTransactions($trdata); // send id or username in obj
+
+            if($check){
+                //req already exists;
+                $output['code'] = '201';
+                $output['msg'] = "request already exists";
+    
+            }else{
+                //proceed
+                $output = $this->Transection->confirmtransaction($data);
+
+            }
+
+            die;
+
+        }else{
+            echo empty_data();
+        }
 
     }
 
