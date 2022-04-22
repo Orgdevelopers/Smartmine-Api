@@ -75,7 +75,7 @@ class Transection{
 
             if(isset($data['id'])){
                 $id = $data['id'];
-                $qry = mysqli_query($this->conn,"SELECT * FROM transections WHERE user_id='$id' ORDER BY id ASC");
+                $qry = mysqli_query($this->conn,"SELECT * FROM transections WHERE user_id='$id' ORDER BY id DESC");
 
             }else{
                 empty_data();
