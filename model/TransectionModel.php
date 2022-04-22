@@ -34,7 +34,7 @@ class Transection{
                 $output['msg'] = "sql error";
             }
 
-            return $result;
+            return $output;
 
         }else{
             $output['code']='101';
