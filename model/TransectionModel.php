@@ -9,7 +9,7 @@ class Transection{
 
             if(isset($data['id'])){
                 $id = $data['id'];
-                $qry = mysqli_query($this->conn,"SELECT * FROM transections WHERE id='$id'");
+                $qry = mysqli_query($this->conn,"SELECT * FROM transections WHERE user_id='$id' AND status='0'");
 
             }else if(isset($data['username'])){
                 $username = $data['username'];
@@ -25,7 +25,7 @@ class Transection{
                 $output['code'] = '200';
                 $output['msg'] = $result;
 
-            }else if($result && !(count($result)>0)){
+            }else if(!(count($result)>0)){
                 $output['code'] = '201';
                 $output['msg'] = $result;
 
