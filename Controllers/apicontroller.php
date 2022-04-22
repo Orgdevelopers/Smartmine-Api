@@ -256,15 +256,15 @@ class apiController {
             $trdata['id'] = $data['id'];
             $check = $this->Transection->getMyPendingTransactions($trdata); // send id or username in obj
 
-            if($check){
-                //req already exists;
+            if($check['code'] == '200'){
                 $output['code'] = '201';
                 $output['msg'] = "request already exists";
-    
-            }else{
-                //proceed
+                
+            }else if($check['code']=='201'){
                 $output = $this->Transection->confirmtransaction($data);
 
+            }else{
+                $output = $check;
             }
 
             echo json_encode($output);

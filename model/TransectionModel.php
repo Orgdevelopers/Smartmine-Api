@@ -9,22 +9,37 @@ class Transection{
 
             if(isset($data['id'])){
                 $id = $data['id'];
-                $qry = mysqli_query($this->conn,"SELECT * FROM transections WHERE id=$id");
+                $qry = mysqli_query($this->conn,"SELECT * FROM transections WHERE id='$id'");
 
             }else if(isset($data['username'])){
                 $username = $data['username'];
-                $qry = mysqli_query($this->conn,"SELECT * FROM transections WHERE username=$username");
+                $qry = mysqli_query($this->conn,"SELECT * FROM transections WHERE username='$username'");
 
             }else{
                 empty_data();
             }
 
-            $result = mysqli_fetch_array($qry);
+            $result = mysqli_fetch_all($qry,1);
+
+            if($result && count($result)>0){
+                $output['code'] = '200';
+                $output['msg'] = $result;
+
+            }else if($result && !(count($result)>0)){
+                $output['code'] = '201';
+                $output['msg'] = $result;
+
+            }else{
+                $output['code'] = '111';
+                $output['msg'] = "sql error";
+            }
 
             return $result;
 
         }else{
-            return false;
+            $output['code']='101';
+            $output['msg'] = "server error";
+            return $output;
         }
     }
 
