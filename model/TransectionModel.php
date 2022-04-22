@@ -1,9 +1,5 @@
 <?php
 
-$mqry = 'mysqli_query';
-$select = "SELECT * FROM transections";
-$clause = " WHERE ";
-
 class Transection{
 
 
@@ -14,7 +10,6 @@ class Transection{
             if(isset($data['id'])){
                 $id = $data['id'];
                 $qry = mysqli_query($this->conn,"SELECT * FROM transections WHERE id=$id");
-               
 
             }else if(isset($data['username'])){
                 $username = $data['username'];
@@ -24,7 +19,7 @@ class Transection{
                 empty_data();
             }
 
-            $result = $this->conn->query($qry);
+            $result = mysqli_fetch_array($qry);
 
             return $result;
 
