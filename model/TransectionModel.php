@@ -11,10 +11,6 @@ class Transection{
                 $id = $data['id'];
                 $qry = mysqli_query($this->conn,"SELECT * FROM transections WHERE user_id='$id' AND status='0'");
 
-            }else if(isset($data['username'])){
-                $username = $data['username'];
-                $qry = mysqli_query($this->conn,"SELECT * FROM transections WHERE username='$username'");
-
             }else{
                 empty_data();
             }
@@ -70,6 +66,43 @@ class Transection{
 
         return $output;
 
+    }
+
+
+    public function getMyAllTransactions($data)
+    {
+        if($data!=null  && $this->conn){
+
+            if(isset($data['id'])){
+                $id = $data['id'];
+                $qry = mysqli_query($this->conn,"SELECT * FROM transections WHERE user_id='$id'");
+
+            }else{
+                empty_data();
+            }
+
+            $result = mysqli_fetch_all($qry,1);
+
+            if($result && count($result)>0){
+                $output['code'] = '200';
+                $output['msg'] = $result;
+
+            }else if(!(count($result)>0)){
+                $output['code'] = '201';
+                $output['msg'] = $result;
+
+            }else{
+                $output['code'] = '111';
+                $output['msg'] = "sql error";
+            }
+
+            return $output;
+
+        }else{
+            $output['code']='101';
+            $output['msg'] = "server error";
+            return $output;
+        }
     }
 
     

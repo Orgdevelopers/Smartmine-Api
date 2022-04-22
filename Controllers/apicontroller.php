@@ -254,12 +254,12 @@ class apiController {
             $this->loadModel('Transection');
 
             $trdata['id'] = $data['id'];
-            $check = $this->Transection->getMyPendingTransactions($trdata); // send id or username in obj
+            $check = $this->Transection->getMyPendingTransactions($trdata); // send id in obj
 
             if($check['code'] == '200'){
                 $output['code'] = '201';
                 $output['msg'] = "request already exists";
-                
+
             }else if($check['code']=='201'){
                 $output = $this->Transection->confirmtransaction($data);
 
@@ -272,7 +272,23 @@ class apiController {
             die;
 
         }else{
-            echo empty_data();
+            empty_data();
+        }
+
+    }
+
+    public function getmyalltransections()//200=success,201=no tran, other error
+    {
+        $data = $_POST;
+
+        if($data!=null && isset($data['id'])){
+            $this->loadModel('Transection');
+            $output = $this->Transection->getMyAllTransactions($data);
+
+            echo json_encode($output);
+
+        }else{
+            empty_data();
         }
 
     }
