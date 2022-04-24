@@ -416,7 +416,7 @@ class apiController {
                 $min_min = $data['mined_seconds']/60;
 
                 $update_data['id'] = $data['id'];
-                $update_data['balance'] = $data['balance'];
+                $update_data['balance'] = $data['total_coins'];
                 $update_data['mined_minutes'] = $min_min;
                 
                 if($this->User->updateuser($update_data)){
