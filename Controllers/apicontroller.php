@@ -404,6 +404,42 @@ class apiController {
 
     }
 
+    public function updateminingstats()
+    {
+        $data = $_POST;
+        if($data!=null && $data['id']){
+            $this->loadModel('User');
+            $user = $this->User->getdetails($data);
+            
+            if($user) {
+
+                $min_min = $data['mined_seconds']/60;
+
+                $update_data['id'] = $data['id'];
+                $update_data['balance'] = $data['balance'];
+                $update_data['mined_minutes'] = $min_min;
+                
+                if($this->User->updateuser($update_data)){
+                    $output['code'] = "200";
+                    $output['msg'] = $this->User->getdetails($data);
+
+                }else{
+                    $output['code'] = "201";
+                    $output['msg'] = "failed to update".$this->User->conn->error;
+
+                }
+
+            }else{
+                $output['code'] = "101";
+                $output['msg'] = "user not found";
+
+            }
+
+        }else{
+            empty_data();
+        }
+    }
+
     public function getbtcliverate()
     {
         $url='https://bitpay.com/api/rates';
