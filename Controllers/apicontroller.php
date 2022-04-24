@@ -293,6 +293,98 @@ class apiController {
 
     }
 
+    public function getplandetails()
+    {
+        $data = $_POST;
+        if($data!=null && isset($data['id'])){
+            $this->loadModel('Plan');
+            $details = $this->Plan->getdetails($data);
+
+            if($details){
+                $output['code'] = "200";
+                $output['msg'] = $details;
+
+            }else{
+                $output['code'] = "201";
+                $output['msg'] = "not found ".$this->Plan->conn->error;
+            }
+
+            echo json_encode($output);
+            die;
+
+        }else{
+            empty_data();
+        }
+        
+    }
+
+    public function enablefreetrial()
+    {
+        $data = $_POST;
+        if($data!=null && isset($data['id'])){
+            $this->loadModel('Plan');
+            $this->loadModel('User');
+            $user = $this->User->getdetails($data);
+            
+            if($user) {
+                $data['plan'] = '1';
+                $data['plan_purchased'] = gmdate("Y-m-d H:i:s");
+                
+                if($this->User->updateuser($data)){
+                    $output['code'] = "200";
+                    $output['msg'] = $this->User->getdetails($data);
+
+                }else{
+                    $output['code'] = "201";
+                    $output['msg'] = "failed to update".$this->User->conn->error;
+
+                }
+
+            }else{
+                $output['code'] = "101";
+                $output['msg'] = "user not found";
+
+            }
+
+            echo json_encode($output);
+            die;
+
+        }
+
+    }
+
+    public function removeuserplan()
+    {
+        $data = $_POST;
+        if($data!=null && $data['id']){
+            $this->loadModel('User');
+            $user = $this->User->getdetails($data);
+            
+            if($user) {
+                $data['plan'] = '0';
+                
+                if($this->User->updateuser($data)){
+                    $output['code'] = "200";
+                    $output['msg'] = $this->User->getdetails($data);
+
+                }else{
+                    $output['code'] = "201";
+                    $output['msg'] = "failed to update".$this->User->conn->error;
+
+                }
+
+            }else{
+                $output['code'] = "101";
+                $output['msg'] = "user not found";
+
+            }
+
+        }else{
+            empty_data();
+        }
+
+    }
+
     public function getbtcliverate()
     {
         $url='https://bitpay.com/api/rates';

@@ -33,7 +33,12 @@ class Plan {
     public function getdetails($data)
     {
         if ($this->conn && $data!=null) {
+            $id = $data['id'];
+            $qry = mysqli_query($this->conn,"SELECT * FROM plans WHERE id='$id'");
 
+            $result = mysqli_fetch_array($qry,1);
+
+            return $result;
 
         }else{
             return false;
