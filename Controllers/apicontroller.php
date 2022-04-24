@@ -421,7 +421,7 @@ class apiController {
                 
                 if($this->User->updateuser($update_data)){
                     $output['code'] = "200";
-                    $output['msg'] = $this->User->getdetails($data);
+                    $output['msg'] = "success";
 
                 }else{
                     $output['code'] = "201";
