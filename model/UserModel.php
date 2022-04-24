@@ -90,7 +90,7 @@ class User {
 
             $username = $current_user['username']; $email = $current_user['email']; $password = $current_user['password'];
             $pic = $current_user['pic']; $status = $current_user['status']; $role = $current_user['role']; $plan = $current_user['plan'];
-            $balance = $current_user['balance']; $mined_minutes = $data['mined_minutes']; $plan_purchased = $data['plan_purchased'];
+            $balance = $current_user['balance']; $mined_minutes = $current_user['mined_minutes']; $plan_purchased = $current_user['plan_purchased'];
 
             $updated = gmdate("Y-m-d H:i:s");
 

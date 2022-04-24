@@ -12,10 +12,11 @@ class Plan {
             $earning = $data['earning'];
             $price = $data['price'];
             $package = $data['package'];
+            $tspd = $data['true_speed'];
             $created = gmdate("Y-m-d H:i:s");
             
-            $qry = "INSERT INTO plans(id, name, algo, speed, duration, earning, price, package, created)
-                        VALUES ('0','$name','$algo','$speed','$speed','$earning','$price','$package','$created')";
+            $qry = "INSERT INTO plans(id, name, algo, speed, duration, earning, price, package, true_speed, created)
+                        VALUES ('0','$name','$algo','$speed','$speed','$earning','$price','$package','$tspd','$created')";
 
             if($this->conn->query($qry)){
                 return true;
