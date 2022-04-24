@@ -385,6 +385,25 @@ class apiController {
 
     }
 
+    public function gettrailplandetails()
+    {
+        $qry = mysqli_query($this->conn,"SELECT * FROM free_plan WHERE id='1'");
+
+        $res = mysqli_fetch_array($qry,1);
+
+        if($res){
+            $output['code'] = "200";
+            $output['msg'] = $res;
+        
+        }else{
+            $output['code'] = "101";
+            $output['msg'] = "error ".$this->conn->error;
+        }
+
+        echo json_encode($output);
+
+    }
+
     public function getbtcliverate()
     {
         $url='https://bitpay.com/api/rates';
