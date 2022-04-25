@@ -16,7 +16,7 @@ class RefundRequest{
             $created = gmdate("Y-m-d H:i:s");
 
             $qry = "INSERT INTO refund_requests (id, user_id, name, email, plan_name, purchase_date, refund_reson, attachment, status, reject_reson, created) 
-                    VALUES ('0', '$id', '$name', '$email', '$plan_name', $purchase_date, '$refund_reson', '$attachment', '0', '', '$created');";
+                    VALUES ('0', '$id', '$name', '$email', '$plan_name', '$purchase_date', '$refund_reson', '$attachment', '0', '', '$created');";
 
             if($this->conn->query($qry)){
 
