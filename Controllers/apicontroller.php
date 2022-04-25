@@ -379,6 +379,9 @@ class apiController {
 
             }
 
+            echo json_encode($output);
+            die;
+
         }else{
             empty_data();
         }
@@ -401,6 +404,7 @@ class apiController {
         }
 
         echo json_encode($output);
+        die;
 
     }
 
@@ -435,10 +439,102 @@ class apiController {
 
             }
 
+            echo json_encode($output);
+            die;
+
         }else{
             empty_data();
         }
     }
+
+    public function registerrefundrequest() //200 = success, 201 = insert error, 101=connection error
+    {
+        $data = $_POST;
+        if($data!=null && isset($data['id'])){
+            $this->loadModel('RefundRequest');
+            $result = $this->RefundRequest->createRequest($data);
+
+            echo json_encode($result);
+            die;
+
+        }
+
+    }
+
+
+    public function updaterefundrequest()
+    {
+        $data=$_POST;
+
+        if($data!=null&& isset($data['id'])){
+
+            $this->loadModel('RefundRequest');
+
+            $result=$this->RefundRequest->update($data);
+            echo json_encode($result);
+            die;
+
+
+
+        }else{
+            empty_data();
+        }
+
+        
+    }
+
+    public function getallrefundrequests()
+    {
+        $data=$_POST;
+
+        if($data!=null&& isset($data['id'])){
+            $this->loadModel('RefundRequest');
+
+            $result=$this->RefundRequest->getAll($data);
+            echo json_encode($result);
+            die;
+
+        }else{
+            empty_data();
+        }
+       
+    }
+
+    public function getallrefundrequestsbyid()
+    {
+        $data=$_POST;
+
+        if($data!=null&& isset($data['id'])){
+            $this->loadModel('RefundRequest');
+
+            $result=$this->RefundRequest->getAllbyid($data);
+            echo json_encode($result);
+            die;
+
+        }else{
+            empty_data();
+        }
+       
+    }
+
+
+    public function getrefundrequestdetail()
+    {
+        $data=$_POST;
+
+        if($data!=null&& isset($data['id'])){
+            $this->loadModel('RefundRequest');
+
+            $result=$this->RefundRequest->getinfobyid($data);
+            echo json_encode($result);
+            die;
+
+        }else{
+            empty_data();
+        }
+       
+    }
+
 
     public function getbtcliverate()
     {
