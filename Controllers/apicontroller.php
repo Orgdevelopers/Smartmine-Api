@@ -219,7 +219,7 @@ class apiController {
             $image = $data['image'];
 
             $filename = rand(9999,999999).$uid.".jpg";
-            $sql_path = "uploads/Images/".$filename;
+            $sql_path = "uploads/images/".$filename;
             $fullpath = "../uploads/images/".$filename;
 
             $img = $image;
