@@ -461,6 +461,24 @@ class apiController {
 
     }
 
+    public function getadminwallets()
+    {
+        $this->loadModel('AdminWallets');
+        $result = $this->AdminWallets->getAll();
+
+        if($result){
+            $output['code'] = "200";
+            $output['msg'] = $result;
+
+        }else{
+            $output['code'] = "201";
+            $output['msg'] = "no plans error ".$this->User->conn->error;
+
+        }
+
+        echo json_encode($output);
+
+    }
 
     public function updaterefundrequest()
     {
