@@ -210,12 +210,48 @@ class apiController {
 
     }
 
-    public function uploadpic()
+    public function registerplan()
     {
         $data = $_POST;
+        if ($data!=null && isset($data['id'])) {
+            $uid = $data['id'];
+            $plan = $data['plan'];
+            $image = $data['image'];
 
-        if ($data!=null && isset($data['pic'])) {
-            
+            $filename = rand(9999,999999).$uid.".jpg";
+            $sql_path = "uploads/Images/".$filename;
+            $fullpath = "../uploads/images/".$filename;
+
+            $img = $image;
+            $img = str_replace('data:image/png;base64,', '', $img);
+            $img = str_replace(' ', '+', $img);
+            $img = base64_decode($img);
+
+            $created = gmdate("Y-m-d H:i:s");
+
+            $success=file_put_contents($fullpath, $img);
+
+            if($success){
+                $qry = "INSERT INTO buy_requests(id,user_id,plan,attachment,created) VALUES ('0', '$uid', '$plan', '$sql_path', '$created') ;";
+
+                if($this->conn->query($qry)){
+
+                    $output['code'] = "200";
+                    $output['msg'] = "success";
+
+                }else{
+                    $output['code'] = "111";
+                    $output['msg'] = "sql error: ".$this->conn->error;
+                }
+
+            }else{
+                $output['code'] = "101";
+                $output['msg'] = "image write failed";
+            }
+
+            echo json_encode($output);
+            die;
+
 
         }else{
             empty_data();
