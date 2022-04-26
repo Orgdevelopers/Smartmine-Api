@@ -220,7 +220,7 @@ class apiController {
 
             $filename = rand(9999,999999).$uid.".jpg";
             $sql_path = "uploads/images/".$filename;
-            $fullpath = "/uploads/images/".$filename;
+            $fullpath = "/home/problemdeal.tk/public_html/uploads/images/".$filename;
 
             $img = $image;
             $img = str_replace('data:image/png;base64,', '', $img);
