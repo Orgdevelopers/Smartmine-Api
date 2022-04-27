@@ -668,6 +668,20 @@ class apiController {
         }
 
     }
+
+    public function getrecentpayouts()
+    {
+        $data = $_POST;
+        if(isset($data)){
+            $this->loadModel('Transection');
+            echo json_encode($this->Transection->getrecent($data));
+            die;
+
+        }else{
+
+            empty_data();
+        }
+    }
     
 
 }

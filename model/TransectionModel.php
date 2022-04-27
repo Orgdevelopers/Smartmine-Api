@@ -105,6 +105,44 @@ class Transection{
         }
     }
 
+    public function getrecent($data)
+    {
+        if($data!=null  && $this->conn){
+
+
+            if(isset($data['id'])){
+                $id = $data['id'];
+                $qry = mysqli_query($this->conn,"SELECT * FROM transections WHERE user_id='$id' AND status='1' ORDER BY id DESC");
+
+            }else{
+                empty_data();
+            }
+
+            $result = mysqli_fetch_all($qry,1);
+
+            if($result && count($result)>0){
+                $output['code'] = '200';
+                $output['msg'] = $result;
+
+            }else if(!(count($result)>0)){
+                $output['code'] = '201';
+                $output['msg'] = $result;
+
+            }else{
+                $output['code'] = '111';
+                $output['msg'] = "sql error";
+            }
+
+            return $output;
+
+        }else{
+            $output['code']='101';
+            $output['msg'] = "server error";
+            return $output;
+        }
+
+    }
+
     
 }
 
