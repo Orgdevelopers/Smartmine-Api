@@ -626,6 +626,48 @@ class apiController {
         $Utails = new Utails();
         $this->Utails = $Utails;
     }
+
+
+    public function googleplanpurchased()
+    {
+        $data = $_POST;
+        if(isset($data['id']) && isset($data['purchased_plan'])){
+
+            $this->loadModel('User');
+            $id = $data['id'];
+            $plan = $data['purchased_plan'];
+            $plan_purchased = gmdate("Y-m-d H:i:s");
+
+            $current_user = $this->User->getdetails($data);
+            if(!$current_user){
+                $output['code'] = '111';
+                $output['msg'] = 'user not found';
+                
+                echo json_encode($output);
+                die;
+
+            }
+
+            $update_data['id'] = $id;
+            $update_data['plan'] = $plan;
+            $update_data['plan_purchased'] = $plan_purchased;
+
+            if($this->User->updateuser($update_data)){
+                $output['code'] = '200';
+                $output['msg'] = 'success';
+            }else{
+                $output['code'] = '101';
+                $output['msg'] = "error ".$this->User->conn->error;
+            }
+
+            echo json_encode($output);
+            die;
+
+        }else{
+            empty_data();
+        }
+
+    }
     
 
 }
