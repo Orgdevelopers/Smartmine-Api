@@ -701,6 +701,42 @@ class apiController {
             empty_data();
         }
     }
+
+
+    //admin functions start from here
+
+    public function adminlogin()
+    {
+        $data = $_POST;
+        if($data!=null && isset($data['email'])){
+
+            $email = $data['email'];
+            $password = $data['password'];
+
+            $admin = mysqli_fetch_array(mysqli_query($this->conn, "SELECT * FROM admin WHERE email='$email' "));
+            if($admin){
+                if(encrypt_password($password)==$admin['password']){
+                    $output['code'] = "200";
+                    $output['msg'] = $admin;
+
+                }else{
+                    $output['code'] = "101";
+                    $output['msg'] = "wrong password";
+                }
+
+            }else{
+                $output['code'] = "101";
+                $output['msg'] = "wrong email";
+            }
+
+            echo json_encode($output);
+            die;
+
+        }else{
+            empty_data();
+        }
+
+    }
     
 
 }
