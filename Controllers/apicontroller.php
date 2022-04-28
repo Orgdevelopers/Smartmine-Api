@@ -210,7 +210,7 @@ class apiController {
 
     }
 
-    public function registerplan()
+    public function registerplan() //buy request
     {
         $data = $_POST;
         if ($data!=null && isset($data['id'])) {
@@ -488,8 +488,27 @@ class apiController {
         $data = $_POST;
         if($data!=null && isset($data['id'])){
             $this->loadModel('RefundRequest');
-            $result = $this->RefundRequest->createRequest($data);
+            $image = $data['image'];
 
+            $filename = uniqid().".jpg";
+            $sql_path = "uploads/images/".$filename;
+            $fullpath = "/home/problemdeal.tk/public_html/uploads/images/".$filename;
+
+            $img = $image;
+            $img = str_replace('data:image/png;base64,', '', $img);
+            $img = str_replace(' ', '+', $img);
+            $img = base64_decode($img);
+            
+            $success=file_put_contents($fullpath, $img);
+
+            if($success){
+                $data['attachment'] = $sql_path;
+                $result = $this->RefundRequest->createRequest($data);
+
+            }else{
+                $result['code'] = "101";
+                $result['msg'] = "attachment upload failed";
+            }
             echo json_encode($result);
             die;
 
