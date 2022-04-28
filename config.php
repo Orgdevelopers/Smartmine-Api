@@ -4,9 +4,9 @@
 
 
 $hostname = "localhost";
-$database   = "prob_lemdeal";
-$db_user = 'prob_lemdeal';
-$password = 'prob_lemdeal';
+$database   = "smartmine_db";
+$db_user = 'smartmine_db';
+$password = 'smartmine_db';
 $portt = 3307;
 
 //email - 
@@ -20,9 +20,10 @@ $smtp_port = 465; // user 25 for vps
 $skip_mail = true; //turn this off after setting up smtp
 
 
-$base_url = "https://hashcoiner.com/";
+$base_url = "https://thesmartmine.com/api/";
 $api_key = "10001200-AAGGDDSE-99332299-ssttmmnn";
 
+echo __DIR__."uploads";
 
 define('DB_HOST',$hostname);
 define('DB_DATABASE',$database);
