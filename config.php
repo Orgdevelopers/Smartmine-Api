@@ -11,13 +11,13 @@ $portt = 3307;
 
 //email - 
 $smtp_name = "Smartmine Customer Support";
-$smtp_from = "support@domain.com";
-$smtp_host= "host";
-$smtp_username = "ex@ex.com";
-$smtp_password = "password";
+$smtp_from = "noreply@thesmartmine.com";
+$smtp_host= "server1.multiplecloudminer.com";
+$smtp_username = "noreply@thesmartmine.com";
+$smtp_password = "noreply@thesmartmine.com";
 $smtp_port = 465; // user 25 for vps
 
-$skip_mail = true; //turn this off after setting up smtp
+$skip_mail = false; //turn this off after setting up smtp
 
 
 $base_url = "https://thesmartmine.com/api/";

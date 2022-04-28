@@ -707,7 +707,7 @@ class apiController {
 
     public function adminlogin()
     {
-        $data = json_decode("php://input");
+        $data =  json_decode("php://input");
         if($data!=null && isset($data['email'])){
 
             $email = $data['email'];

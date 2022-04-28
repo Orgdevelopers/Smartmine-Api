@@ -12,8 +12,8 @@ class Utails {
             return true;
         }else{
             $to = $data['email'];
-        $subject = $data['subject'];
-        $msg = $data['msg'];
+            $subject = $data['subject'];
+            $msg = $data['msg'];
 
          $mail = new PHPMailer(true);
 
