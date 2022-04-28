@@ -23,7 +23,7 @@ $skip_mail = true; //turn this off after setting up smtp
 $base_url = "https://thesmartmine.com/api/";
 $api_key = "10001200-AAGGDDSE-99332299-ssttmmnn";
 
-echo __DIR__."uploads";
+$upload_dir =  __DIR__."/uploads/images/";
 
 define('DB_HOST',$hostname);
 define('DB_DATABASE',$database);
@@ -37,7 +37,7 @@ define('SMTP_PASSWORD',$smtp_password);
 define('SMTP_PORT',$smtp_port);
 define('SMTP_NAME',$smtp_name);
 define('SMTP_FROM',$smtp_from);
-
+define("UPLOADS_DIR",$upload_dir);
 define('SKIP_MAIL',$skip_mail);
 
 // $headers = [
