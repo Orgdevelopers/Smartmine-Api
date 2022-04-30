@@ -936,7 +936,12 @@ class apiController {
             die;
 
         }else{
-            empty_data();
+            $output['code'] ="sdldflfs";
+            $output['msg'] = $data;
+
+            echo json_encode($output);
+            die;
+            //empty_data();
         }
 
     }
