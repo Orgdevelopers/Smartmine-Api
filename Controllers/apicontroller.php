@@ -232,7 +232,7 @@ class apiController {
     {
         if(isset($_POST['id'])){
             $data = $_POST;
-            
+
         }else{
             $data = json_decode(file_get_contents("php://input"),true);
         }
@@ -242,7 +242,7 @@ class apiController {
             if ($this->User->updateuser($data)) {
                 $info['id'] = $data['id'];
                 $output['code'] = '200';
-                $output['msg'] = $this->User->getdetails($info);
+                $output['msg'] = $data;
 
             }else{
                 $output['code']='101';
