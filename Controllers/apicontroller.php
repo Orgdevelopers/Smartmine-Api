@@ -878,6 +878,23 @@ class apiController {
         die;
 
     }
+
+    public function getallbuyrequests()
+    {
+        $all = mysqli_fetch_all(mysqli_query($this->conn,"SELECT * FROM buy_requests"),1);
+
+        if($all){
+            $output['code'] = "200";
+            $output['msg'] = $all;
+        }else{
+            $output['code'] = "101";
+            $output['msg'] = "error ".$this->conn->error;
+        }
+
+        echo json_encode($output);
+        die;
+
+    }
     
 
 }
