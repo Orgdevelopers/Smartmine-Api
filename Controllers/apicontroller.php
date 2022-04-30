@@ -943,7 +943,7 @@ class apiController {
 
     public function deleteplan()
     {
-        $data = json_decode(file_get_contents("php://input"));
+        $data = json_decode(file_get_contents("php://input"),true);
 
         if($data!=null && isset($data['id'])){
             $this->loadModel('Plan');
