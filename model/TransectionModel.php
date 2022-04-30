@@ -143,6 +143,24 @@ class Transection{
 
     }
 
+    public function getAll()
+    {
+        if($this->conn){
+            $qry = mysqli_query($this->conn,"SELECT * FROM transections");
+
+            $all = mysqli_fetch_all($qry,1);
+
+            if($all){
+                return $all;
+            }else{
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+    }
+
     
 }
 

@@ -895,6 +895,26 @@ class apiController {
         die;
 
     }
+
+    public function getalltransections()
+    {
+        $this->loadModel('Transection');
+
+        $all = $this->Transection->getAll();
+
+        if($all){
+            $output['code'] = "200";
+            $output['msg'] = $all;
+
+        }else{
+            $output['code'] = '101';
+            $output['msg'] = "error ".$this->Transection->conn->error;
+        }
+
+        echo json_encode($output);
+        die;
+
+    }
     
 
 }
