@@ -370,7 +370,8 @@ class apiController {
 
     public function getplandetails()
     {
-        $data = $_POST;
+        $data = json_decode(file_get_contents("php://input"),true);
+
         if($data!=null && isset($data['id'])){
             $this->loadModel('Plan');
             $details = $this->Plan->getdetails($data);
