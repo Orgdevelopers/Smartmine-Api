@@ -230,7 +230,12 @@ class apiController {
 
     public function updateuser()
     {
-        $data = $_POST;
+        if(isset($_POST['id'])){
+            $data = $_POST;
+            
+        }else{
+            $data = json_decode(file_get_contents("php://input"),true);
+        }
 
         if($data!=null && isset($data['id'])){
             $this->loadModel('User');
