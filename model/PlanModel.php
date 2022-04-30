@@ -91,19 +91,19 @@ class Plan {
 
             if(isset($data['name'])){
                 $name = $data['name'];
-            }else if(isset($data['algo'])){
+            } if(isset($data['algo'])){
                 $algo =$data['algo'];
-            }else if(isset($data['speed'])){
+            } if(isset($data['speed'])){
                 $speed =$data['speed'];
-            }else if(isset($data['duration'])){
+            } if(isset($data['duration'])){
                 $duration =$data['duration'];
-            }else if(isset($data['earning'])){
+            } if(isset($data['earning'])){
                 $earning =$data['earning'];
-            }else if(isset($data['price'])){
+            } if(isset($data['price'])){
                 $price =$data['price'];
-            }else if(isset($data['package'])){
+            } if(isset($data['package'])){
                 $package =$data['package'];
-            }else if(isset($data['true_speed'])){
+            } if(isset($data['true_speed'])){
                 $tspd =$data['true_speed'];
             }
 
