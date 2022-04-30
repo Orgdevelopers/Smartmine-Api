@@ -917,6 +917,30 @@ class apiController {
     }
     
 
+    public function createplan()
+    {
+        $data = json_decode(file_get_contents("php://input"),true);
+
+        if($data!=null && isset($data['name'])){
+            $this->loadModel('Plan');
+            if($this->Plan->createPlan($data)){
+                $output['code'] = '200';
+                $output['msg'] = "success";
+
+            }else{
+                $output['code'] = '101';
+                $output['msg'] = "error ".$this->Plan->conn->error;
+            }
+
+            echo json_encode($output);
+            die;
+
+        }else{
+            empty_data();
+        }
+
+    }
+
 }
 
 
