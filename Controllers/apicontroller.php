@@ -936,13 +936,34 @@ class apiController {
             die;
 
         }else{
-            $output['code'] ="sdldflfs";
-            $output['msg'] = $data;
+            empty_data();
+        }
+
+    }
+
+    public function deleteplan()
+    {
+        $data = json_decode(file_get_contents("php://input"));
+
+        if($data!=null && isset($data['id'])){
+            $this->loadModel('Plan');
+
+            if($this->Plan->delete($data)){
+                $output['code'] = '200';
+                $output['msg'] = "success";
+
+            }else{
+                $output['code'] = '101';
+                $output['msg'] = "error ".$this->Plan->conn->error;
+            }
 
             echo json_encode($output);
             die;
-            //empty_data();
+
+        }else{
+            empty_data();
         }
+
 
     }
 

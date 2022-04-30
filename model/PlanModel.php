@@ -60,6 +60,25 @@ class Plan {
         }
     }
 
+    public function delete($data)
+    {
+        if($this->conn && isset($data['id'])){
+            $id = $data['id'];
+            $qry = "DELETE FROM plans WHERE id='$id'";
+
+            if($this->conn->query($qry)){
+                return true;
+
+            }else{
+                return false;
+
+            }
+
+        }else{
+            return false;
+        }
+    }
+
 }
 
 ?>
