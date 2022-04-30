@@ -151,7 +151,12 @@ class apiController {
 
     public function getuserdetails() //200=success, 201=no user, 101=error+error reson;
     {
-        $data = $_POST;
+        if($_POST!=null){
+            $data = $_POST;
+        }else{
+            $data = json_decode(file_get_contents("php://input"),true);
+        }
+        
         if($data!=null){
             if(isset($data['username']) || isset($data['email']) || isset($data['id'])){
                 $this->loadModel('User');
