@@ -597,9 +597,9 @@ class apiController {
 
     public function getallrefundrequests()
     {
-        $data=$_POST;
+        $data =  json_decode(file_get_contents("php://input"),true);
 
-        if($data!=null&& isset($data['id'])){
+        if($data!=null){
             $this->loadModel('RefundRequest');
 
             $result=$this->RefundRequest->getAll($data);
