@@ -20,7 +20,7 @@ $smtp_port = 465; // user 25 for vps
 $skip_mail = false; //turn this off after setting up smtp
 
 
-$base_url = "https://thesmartmine.com/api/";
+$base_url = "https://thesmartmine.com/smartmine-api/";
 $api_key = "10001200-AAGGDDSE-99332299-ssttmmnn";
 
 $upload_dir =  __DIR__."/uploads/images/";

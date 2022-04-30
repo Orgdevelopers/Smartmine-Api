@@ -11,11 +11,9 @@ class User {
 
             $date = $this->date;
 
-            if(SKIP_MAIL){
-                $status = '1';
-            }else{
-                $status = '0';
-            }
+        
+            $status = '0';
+            
 
             $qry = "INSERT INTO user (id, username, email, password, pic, status, role, plan, balance, mined_minutes, plan_purchased, updated, created) 
                             VALUES ('0', '$username', '$email', '$password', '', '$status', 'user', '0', '0', '0', '$date', '$date', '$date');";

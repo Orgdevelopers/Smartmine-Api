@@ -65,11 +65,12 @@ class apiController {
             
             $check = $this->User->check_signup_data($data['email'], $data['username']);
             if($check['code'] == '200'){
-                $email['email'] = $data['email'];
-                $email['subject'] ="Smartmine verification email";
-                $email['msg'] = "click the link below to verify your Smartmine Account \n"."verification link:-". BASE_URL."verify.php?token=". encrypt_password($data['email']);
+                $to = $data['email']."";
+                $subject ="Smartmine verification email";
+                $msg = "click the link below to verify your Smartmine Account \n"."verification link:-". BASE_URL."verify.php?token=". encrypt_password($data['email']);
+                
 
-                if($this->Utails->SendEmmail($email)){
+                if($this->Utails->SendEmmail($to,$subject,$msg)){
 
                     if($this->User->CreateUser()){
                     
@@ -78,6 +79,7 @@ class apiController {
 
                         $dat['email'] = $data['email'];
                         $output['user'] = $this->User->getdetails($dat);
+                        $output['email'] = $data['email'];
                     
     
                     }else{
@@ -107,6 +109,43 @@ class apiController {
             die;
 
         }
+        
+    }
+    
+    public function verifyemail(){
+        
+        $data = json_decode(file_get_contents("php://input"),true);
+        
+        if($data!=null){
+            
+            $this->loadModel('User');
+            $email['email'] = decrypt_password($data['hash_token']);
+    
+            $output = $this->User->getdetails($email);
+            if($output && $output['status']=="0"){
+                $update['status'] = "1";
+                $update['id'] = $output['id'];
+    
+                if($this->User->updateuser($update)){
+                    $output['code'] = "200";
+
+                }else{
+                    $output['code'] = "101";
+                    $output['msg'] = "failed to update".$this->User->conn->error;
+                }
+    
+            }else{
+                $output['code'] = "101";
+                $output['msg'] = "user not found".$email['email'];
+            }
+            
+        }else{
+            $output['code'] = "101";
+            $output['msg'] = $data;
+        }
+            
+        echo json_encode($output);
+        die;
         
     }
 
@@ -737,6 +776,88 @@ class apiController {
         }
 
     }
+    
+    
+    
+    public function sendotp()
+    {
+        $data = $_POST;
+
+        if($data!=null && isset($data['email'])){
+            $this->loadModel('User');
+            $this->loadUtails();
+
+            $check = $this->User->getdetails($data);
+            if($check){
+                $otp = rand(100000,999999);
+                $to = $data['email'];
+                $subject = "Smartmine verification code";
+                $msg = "Here is your Smartmine verification code:-".$otp;
+
+                if($this->Utails->SendEmmail($to,$subject,$msg)){
+                    $output['code'] = "200";
+                    $output['msg'] = $otp."";
+
+                }else{
+                    $output['code'] ="111";
+                    $output['msg'] = "otp not sent";
+                }
+
+            }else{
+                $output['code'] = "211";
+                $output['msg'] = "user not found";
+            }
+
+            echo json_encode($output);
+            die;
+
+        }else{
+            empty_data();
+        }
+
+    }
+
+
+    public function updatepassword()
+    {
+        $data = $_POST;
+        if($data!=null && isset($data['email'])){
+            $this->loadModel('User');
+
+            $email = $data['email'];
+            $password = $data['password'];
+            $hash = encrypt_password($password);
+
+            $current_user = $this->User->getdetails($data);
+            
+            if($current_user){
+                $update_data['password'] = $hash;
+                $update_data['id'] = $current_user['id'];
+
+                if($this->User->updateuser($update_data)){
+
+                    $output['code'] = "200";
+                    $output['msg'] = "success";
+
+                }else{
+                    $output['code'] = "111";
+                    $output['msg'] = "error ".$this->User->conn->error;
+                }
+
+            }else{
+                $output['code'] = "211";
+                $output['msg'] = "user not found";
+            }
+
+            echo json_encode($output);
+            die;
+
+        }else{
+            empty_data();
+        }
+
+    }
+    
     
 
 }
