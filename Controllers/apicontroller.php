@@ -370,7 +370,12 @@ class apiController {
 
     public function getplandetails()
     {
-        $data = json_decode(file_get_contents("php://input"),true);
+        if(isset($_POST['id'])){
+            $data = $_POST;
+        }else{
+            $data = json_decode(file_get_contents("php://input"),true);
+
+        }
 
         if($data!=null && isset($data['id'])){
             $this->loadModel('Plan');
@@ -965,6 +970,30 @@ class apiController {
             empty_data();
         }
 
+
+    }
+
+    public function updateplan()
+    {
+        $data = json_decode(file_get_contents("php://input"),true);
+        if($data!=null && isset($data['id'])){
+            $this->loadModel('Plan');
+            if($this->Plan->updatePlan($data)){
+
+                $output['code']="200";
+                $output['msg']="success";
+
+            }else{
+                $output['code']="101";
+                $output['msg']="failed".$this->Plan->conn->error;
+            }
+
+            echo json_encode($output);
+            die;
+
+        }else{
+        empty_data();
+        }
 
     }
 

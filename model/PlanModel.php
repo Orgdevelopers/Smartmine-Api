@@ -79,6 +79,50 @@ class Plan {
         }
     }
 
+    public function updatePlan($data)
+    {
+        if($this->conn && isset($data['id'])){
+            $id = $data['id'];
+
+            $current = $this->getdetails($data);
+            $name = $current['name'];$algo = $current['algo'];$speed = $current['speed'];
+            $duration = $current['duration'];$earning = $current['earning'];$price = $current['price'];
+            $package = $current['package'];$tspd = $current['true_speed'];
+
+            if(isset($data['name'])){
+                $name = $data['name'];
+            }else if(isset($data['algo'])){
+                $algo =$data['algo'];
+            }else if(isset($data['speed'])){
+                $speed =$data['speed'];
+            }else if(isset($data['duration'])){
+                $duration =$data['duration'];
+            }else if(isset($data['earning'])){
+                $earning =$data['earning'];
+            }else if(isset($data['price'])){
+                $price =$data['price'];
+            }else if(isset($data['package'])){
+                $package =$data['package'];
+            }else if(isset($data['true_speed'])){
+                $tspd =$data['true_speed'];
+            }
+
+            $qry = "UPDATE plans SET name='$name', algo='$algo', speed='$speed', duration='$duration', earning='$earning'
+            , price='$price', package='$package', true_speed='$tspd' WHERE id='$id'";
+
+            if($this->conn->query($qry)){
+                return true;
+
+            }else{
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+        
+    }
+
 }
 
 ?>
