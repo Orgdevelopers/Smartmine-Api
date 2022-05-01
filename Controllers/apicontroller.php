@@ -1244,12 +1244,12 @@ class apiController {
             $user_data['id'] = $details['user_id'];
             $user = $this->User->getdetails($user_data);
 
-            $current_balance= (int) $user['balance'];
-            $amount = (int) $details['amount'];
+            $current_balance= $user['balance'];
+            $amount = $details['amount'];
 
             $balance = $current_balance-$amount;
             $update['id'] = $user['id'];
-            $update['balance'] = $balance+'';
+            $update['balance'] = $balance;
 
             $id = $details['id'];
             $accept_qry = "UPDATE transecions SET status='1' WHERE id='$id'";
