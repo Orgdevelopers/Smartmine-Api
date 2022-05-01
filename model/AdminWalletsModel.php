@@ -1,6 +1,26 @@
 <?php
 class AdminWallets{
 
+    public function create($data)
+    {
+        if($this->conn){
+            $name = $data['name'];
+            $address = $data['address'];
+
+            $qry = "INSERT INTO admin_wallets(id, name, address) VALUES('0', '$name', '$address') ;";
+
+            if($this->conn->query($qry)){
+                return true;
+            }else{
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+
+    }
+
     public function getAll()
     {
         if($this->conn){
@@ -53,7 +73,7 @@ class AdminWallets{
 
                 if($this->conn->query($qry)){
                     return true;
-                    
+
                 }else{
                     return false;
                 }

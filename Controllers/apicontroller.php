@@ -1143,6 +1143,28 @@ class apiController {
 
     }
 
+    public function createwalletaddress()
+    {
+        $data = json_decode(file_get_contents("php://input"),true);
+        if($data!=null && isset($data['name'])){
+            $this->loadModel('AdminWallets');
+            if($this->AdminWallets->create($data)){
+                $output['code'] = '200';
+                $output['msg'] = "success";
+            }else{
+                $output['code'] = '111';
+                $output['msg'] = "error ".$this->AdminWallets->conn->error;
+            }
+
+            echo json_encode($output);
+            die;
+
+        }else{
+            empty_data();
+        }
+
+    }
+
 
 }
 
