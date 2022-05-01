@@ -1070,15 +1070,15 @@ class apiController {
             $this->loadModel('RefundRequest');
             $this->loadModel('User');
 
-            $data['status'] = '2';
+            $data['status'] = '1';
             $output = $this->RefundRequest->update($data);
 
-            // $info = $this->RefundRequest->getinfobyid($data['id']);
+            $info = $this->RefundRequest->getinfobyid($data);
 
-            // $update_data['id'] = $info['user_id'];
-            // $update_data['plan'] = '0';
+            $update_data['id'] = $info['user_id'];
+            $update_data['plan'] = '0';
 
-            // $this->User->updateuser($update_data);
+            $this->User->updateuser($update_data);
 
             echo json_encode($output);
             die;
