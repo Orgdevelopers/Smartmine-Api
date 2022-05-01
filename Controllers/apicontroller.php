@@ -1050,8 +1050,9 @@ class apiController {
         }
 
         if($data!=null && isset($data['id'])){
-            $data['status'] = '2';
             $this->loadModel('RefundRequest');
+
+            $data['status'] = '2';
             $output = $this->RefundRequest->update($data);
 
             echo json_encode($output);
@@ -1073,17 +1074,18 @@ class apiController {
         }
 
         if($data!=null && isset($data['id'])){
-            $id = $data['id'];
-            $qry = "UPDATE refund_requests SET status='1' WHERE id=$id ";
-        
-            if($this->conn->query($qry)){
-                $output['code'] = "200";
-                $output['msg'] = "success";
+            $this->loadModel('RefundRequest');
+            $this->loadModel('User');
 
-            }else{
-                $output['code'] = "101";
-                $output['msg'] = "error ".$this->conn->error;
-            }
+            $data['status'] = '2';
+            $output = $this->RefundRequest->update($data);
+
+            $info = $this->RefundRequest->getinfobyid($data['id']);
+
+            $update_data['id'] = $info['user_id'];
+            $update_data['plan'] = '0';
+
+            $this->User->updateuser($update_data);
 
             echo json_encode($output);
             die;
