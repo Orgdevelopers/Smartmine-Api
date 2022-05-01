@@ -508,11 +508,11 @@ class apiController {
             
             if($user) {
 
-                $min_min = $data['mined_seconds']/60;
+                //$min_min = $data['mined_seconds']/60;
 
                 $update_data['id'] = $data['id'];
-                $update_data['balance'] = $data['total_coins'];
-                $update_data['mined_minutes'] = $min_min;
+                $update_data['balance'] = $user['balance']+$data['mined_coins'];
+                //$update_data['mined_minutes'] = $min_min;
                 
                 if($this->User->updateuser($update_data)){
                     $output['code'] = "200";
