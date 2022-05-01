@@ -1183,7 +1183,7 @@ class apiController {
 
                 $delete_qry = "DELETE FROM buy_requests WHERE id='$id'";
 
-                if($this->User->update($update_user) && $this->conn->query($delete_qry)){
+                if($this->User->updateuser($update_user) && $this->conn->query($delete_qry)){
                     $output['code']="200";
                     $output['msg']="success";
 
