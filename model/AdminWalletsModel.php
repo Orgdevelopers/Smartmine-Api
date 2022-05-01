@@ -33,6 +33,41 @@ class AdminWallets{
 
     }
 
+    public function update($data)
+    {
+        if($this->conn && isset($data['id'])){
+            $id = $data['id'];
+            $current = mysqli_fetch_array(mysqli_query($this->conn,"SELECT * FROM admin_wallets WHERE id='$id'"));
+
+            if($current){
+                $name=$current['name']; $address = $current['address'];
+
+                if(isset($data['name'])){
+                    $name = $data['name'];
+                }
+                if(isset($data['address'])){
+                    $address = $data['address'];
+                }
+
+                $qry = "UPDATE admin_wallets SET name='$name', address='$address' WHERE id='$id'";
+
+                if($this->conn->query($qry)){
+                    return true;
+                    
+                }else{
+                    return false;
+                }
+
+            }else{
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+
+    }
+
 }
 
 ?>

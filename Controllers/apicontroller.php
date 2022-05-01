@@ -1120,6 +1120,29 @@ class apiController {
 
     }
 
+    public function editwalletaddress()
+    {
+        $data = json_decode(file_get_contents("php://input"),true);
+        if(isset($data['id'])){
+            $this->loadModel('AdminWallets');
+            if($this->AdminWallets->update($data)){
+                $output['code']="200";
+                $output['msg'] = "success";
+ 
+            }else{
+                $output['code'] = '111';
+                $output['msg'] = "error ".$this->AdminWallets->conn->error;
+            }
+
+            echo json_encode($output);
+            die;
+
+        }else{
+            empty_data();
+        }
+
+    }
+
 
 }
 
