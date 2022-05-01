@@ -1027,6 +1027,9 @@ class apiController {
                 $output['msg'] = "error ".$this->RefundRequest->conn->error;
             }
 
+            echo json_encode($output);
+            die;
+
         }else{
             empty_data();
         }
@@ -1055,6 +1058,9 @@ class apiController {
                 $output['msg'] = "error ".$this->RefundRequest->conn->error;
             }
 
+            echo json_encode($output);
+            die;
+
         }else{
             empty_data();
         }
@@ -1082,6 +1088,9 @@ class apiController {
                 $output['code'] = "101";
                 $output['msg'] = "error ".$this->RefundRequest->conn->error;
             }
+
+            echo json_encode($output);
+            die;
 
         }else{
             empty_data();
