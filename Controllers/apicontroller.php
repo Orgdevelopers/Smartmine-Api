@@ -1018,7 +1018,14 @@ class apiController {
         if($data!=null && isset($data['id'])){
 
             $this->loadModel('RefundRequest');
-           $output =$this->RefundRequest->delete($data['id']);
+           if($this->RefundRequest->delete($data['id'])){
+               $output['code']="200";
+               $output['msg'] = "success";
+
+           }else{
+               $output['code'] = '111';
+               $output['msg'] = "error ".$this->RefundRequest->conn->error;
+           }
 
             echo json_encode($output);
             die;
