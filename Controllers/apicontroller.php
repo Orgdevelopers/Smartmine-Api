@@ -1197,6 +1197,9 @@ class apiController {
                 $output['msg'] = "error";
             }
 
+            echo json_encode($output);
+            die;
+
         }else{
             empty_data();
         }
