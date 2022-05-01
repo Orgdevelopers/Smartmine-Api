@@ -1206,7 +1206,7 @@ class apiController {
     public function deletepurchaserequest()
     {
         $data = json_decode(file_get_contents("php://input"),true);
-        if($data!=null && $data['id']){
+        if($data!=null && isset($data['id'])){
 
             $id = $data['id'];
             $qry = "DELETE FROM buy_requests WHERE id='$id'";
@@ -1217,6 +1217,7 @@ class apiController {
             }else{
                 $output['code'] = "101";
                 $output['msg'] = "error ".$this->conn->error;
+
             }
 
             json_encode($output);
