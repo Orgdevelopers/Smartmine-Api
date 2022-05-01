@@ -1096,6 +1096,30 @@ class apiController {
         
     }
 
+    public function delete_wallet_address()
+    {
+        $data = json_decode(file_get_contents("php://input"),true);
+
+        if($data!=null && $data['id']){
+            $this->loadModel('AdminWallets');
+            if($this->AdminWallets->delete($data)){
+                $output['code']="200";
+               $output['msg'] = "success";
+
+           }else{
+               $output['code'] = '111';
+               $output['msg'] = "error ".$this->AdminWallets->conn->error;
+           }
+
+           echo json_encode($output);
+           die;
+
+        }else{
+            empty_data();
+        }
+
+    }
+
 
 }
 
