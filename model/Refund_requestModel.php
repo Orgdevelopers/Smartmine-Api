@@ -199,6 +199,24 @@ class RefundRequest{
         }
     }
 
+    public function delete($id)
+    {
+        if($this->conn){
+            $qry = "DELETE FROM refund_requests WHERE id='$id'";
+
+            if($this->conn->query($qry)){
+                return true;
+
+            }else{
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+
+    }
+
     
 }
 

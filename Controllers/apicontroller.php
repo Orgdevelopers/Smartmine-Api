@@ -1007,6 +1007,89 @@ class apiController {
 
     }
 
+    public function deleterefundrequest()
+    {
+        if(isset($_POST['id'])){
+            $data = $_POST;
+        }else{
+            $data = json_decode(file_get_contents("php://input"),true);
+        }
+
+        if($data!=null && isset($data['id'])){
+
+            $this->loadModel('RefundRequest');
+            if($this->RefundRequest->delete($data['id'])){
+                $output['code'] = "200";
+                $output['msg'] = "success";
+
+            }else{
+                $output['code'] = "101";
+                $output['msg'] = "error ".$this->RefundRequest->conn->error;
+            }
+
+        }else{
+            empty_data();
+        }
+
+
+    }
+
+    public function reject_refund_request()
+    {
+        if(isset($_POST['id'])){
+            $data = $_POST;
+        }else{
+            $data = json_decode(file_get_contents("php://input"),true);
+        }
+
+        if($data!=null && isset($data['id'])){
+
+            $data['status'] = "2";
+            $this->loadModel('RefundRequest');
+            if($this->RefundRequest->update($data)){
+                $output['code'] = "200";
+                $output['msg'] = "success";
+
+            }else{
+                $output['code'] = "101";
+                $output['msg'] = "error ".$this->RefundRequest->conn->error;
+            }
+
+        }else{
+            empty_data();
+        }
+        
+    }
+
+
+    public function accept_refund_requet()
+    {
+        if(isset($_POST['id'])){
+            $data = $_POST;
+        }else{
+            $data = json_decode(file_get_contents("php://input"),true);
+        }
+
+        if($data!=null && isset($data['id'])){
+
+            $data['status'] = "1";
+            $this->loadModel('RefundRequest');
+            if($this->RefundRequest->update($data)){
+                $output['code'] = "200";
+                $output['msg'] = "success";
+
+            }else{
+                $output['code'] = "101";
+                $output['msg'] = "error ".$this->RefundRequest->conn->error;
+            }
+
+        }else{
+            empty_data();
+        }
+        
+    }
+
+
 }
 
 

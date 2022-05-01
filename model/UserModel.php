@@ -106,6 +106,9 @@ class User {
                 $role = $data['role'];
             }if (isset($data['plan'])) {
                 $plan = $data['plan'];
+                if(!isset($data['plan_purchased'])){
+                    $data['plan_purchased'] = $updated;
+                }
             }if (isset($data['balance'])) {
                 $balance = $data['balance'];
             }if (isset($data['mined_minutes'])) {
