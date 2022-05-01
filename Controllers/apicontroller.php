@@ -1051,7 +1051,7 @@ class apiController {
 
         if($data!=null && isset($data['id'])){
             $data['status'] = '2';
-
+            $this->loadModel('RefundRequest');
             $output = $this->RefundRequest->update($data);
 
             echo json_encode($output);
