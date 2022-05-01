@@ -171,7 +171,7 @@ class RefundRequest{
 
                 }
 
-                $qry = "UPDATE refund_request SET email=$email, plan_name=$plan_name, purchase_date=$purchase_date,
+                $qry = "UPDATE refund_requests SET email=$email, plan_name=$plan_name, purchase_date=$purchase_date,
                         refund_reson=$refund_reson, attachment=$attachment, status=$status, reject_reson=$reject_reson WHERE id='$id'";
 
                 $result = $this->conn->query($qry);
