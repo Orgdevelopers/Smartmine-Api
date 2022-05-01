@@ -140,6 +140,7 @@ class RefundRequest{
         {
         if ($this->conn && $data!=null && isset($data['id'])) {
             
+            $id = $data['id'];
             $current = $this->getinfobyid($data);
 
             if($current && $current!=null){
@@ -171,13 +172,13 @@ class RefundRequest{
                 }
 
                 $qry = "UPDATE refund_request SET email=$email, plan_name=$plan_name, purchase_date=$purchase_date,
-                        refund_reson=$refund_reson, attachment=$attachment, status=$status, reject_reson=$reject_reson";
+                        refund_reson=$refund_reson, attachment=$attachment, status=$status, reject_reson=$reject_reson WHERE id='$id'";
 
                 $result = $this->conn->query($qry);
                 
                 if($result){
                     $output['code'] = "200";
-                    $id["id"]=$this->conn->insert_id;
+                    //$id["id"]=$this->conn->insert_id;
                     $detail=$this->getinfobyid($id);
                     $output['msg'] = $detail;
 
