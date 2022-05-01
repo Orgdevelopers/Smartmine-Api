@@ -1274,6 +1274,32 @@ class apiController {
         }
     }
 
+    public function reject_withdrawal_request()
+    {
+        $data = json_decode(file_get_contents("php://input"),true);
+        if($data!=null &&  isset($data['id'])){
+            $id = $data['id'];
+            $qry = "UPDATE transections SET status='2' WHERE id='$id'";
+
+            if($this->conn->query($qry)){
+                $output['code'] = "200";
+                $output['msg'] = "success";
+
+            }else{
+                $output['code'] = "101";
+                $output['msg'] = "user error= ".$this->conn->error;
+
+            }
+
+            echo json_encode($output);
+            die;
+        
+        }else{
+            empty_data();
+        }
+
+    }
+
 
 }
 
