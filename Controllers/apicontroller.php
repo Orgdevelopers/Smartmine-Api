@@ -1207,7 +1207,23 @@ class apiController {
     {
         $data = json_decode(file_get_contents("php://input"),true);
         if($data!=null && $data['id']){
-            $this->loadModel('AdminWallets');
+
+            $id = $data['id'];
+            $qry = "DELETE FROM buy_requests WHERE id='$id'";
+            if($this->conn->query($qry)){
+                $output['code'] = "200";
+                $output['msg'] = "success";
+
+            }else{
+                $output['code'] = "101";
+                $output['msg'] = "error ".$this->conn->error;
+            }
+
+            json_encode($output);
+            die;
+
+        }else{
+            empty_data();
 
         }
 
