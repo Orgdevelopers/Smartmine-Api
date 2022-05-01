@@ -161,6 +161,22 @@ class Transection{
         }
     }
 
+    public function getdetails($data)
+    {
+        if($this->conn && isset($data['id'])){
+            $id = $data['id'];
+            $detail = mysqli_fetch_array(mysqli_query($this->conn,"SELECT * FROM transections WHERE id='$id'"));
+            if($detail){
+                return $detail;
+            }else{
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+    }
+
     
 }
 

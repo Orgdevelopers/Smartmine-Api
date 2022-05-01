@@ -1233,6 +1233,47 @@ class apiController {
 
     }
 
+    public function accept_withdrawal_request()
+    {
+        $data = json_decode(file_get_contents("php://input"),true);
+        if($data!=null &&  isset($data['id'])){
+            $this->loadModel('Transection');
+            $this->loadModel('User');
+
+            $details = $this->Transection->getdetails($data);
+            $user_data['id'] = $details['user_id'];
+            $user = $this->User->getdetails($user_data);
+
+            $current_balance= (int) $user['balance'];
+            $amount = (int) $details['amount'];
+
+            $balance = $current_balance-$amount;
+            $update['id'] = $user['id'];
+            $update['balance'] = $balance+'';
+
+            $id = $details['id'];
+            $accept_qry = "UPDATE transecions SET status='1' WHERE id='$id'";
+
+            if($this->User->updateuser($update) && $this->conn->query($accept_qry)){
+
+                $output['code'] = "200";
+                $output['msg'] = "success";
+
+            }else{
+                $output['code'] = "101";
+                $output['msg'] = "user error= ".$this->User->conn->error." req error=".$this->conn->error;
+
+            }
+
+            echo json_encode($output);
+            die;
+            
+
+        }else{
+            empty_data();
+        }
+    }
+
 
 }
 
