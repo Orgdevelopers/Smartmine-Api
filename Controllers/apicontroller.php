@@ -1168,7 +1168,7 @@ class apiController {
     public function acceptpurchaserequest()
     {
         $data = json_decode(file_get_contents("php://input"),true);
-        if($data!=null && $data['id']){
+        if($data!=null &&  isset($data['id'])){
             $this->loadModel('User');
             $id = $data['id'];
             $info = mysqli_fetch_array(mysqli_query($this->conn,"SELECT * FROM buy_requests WHERE id='$id'"));
