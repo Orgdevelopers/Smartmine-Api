@@ -1032,7 +1032,7 @@ class apiController {
 
 
 
-            
+
 
         }else{
             empty_data();
@@ -1051,9 +1051,10 @@ class apiController {
 
         if($data!=null && isset($data['id'])){
 
-            $data['status'] = "2";
-            $this->loadModel('RefundRequest');
-            if($this->RefundRequest->update($data)){
+            $id = $data['id'];
+            $qry = "UPDATE refund_request SET status='2' WHERE id='$id' ";
+        
+            if($this->conn->query($qry)){
                 $output['code'] = "200";
                 $output['msg'] = "success";
 
@@ -1081,10 +1082,10 @@ class apiController {
         }
 
         if($data!=null && isset($data['id'])){
-
-            $data['status'] = "1";
-            $this->loadModel('RefundRequest');
-            if($this->RefundRequest->update($data)){
+            $id = $data['id'];
+            $qry = "UPDATE refund_request SET status='1' WHERE id=$id ";
+        
+            if($this->conn->query($qry)){
                 $output['code'] = "200";
                 $output['msg'] = "success";
 
