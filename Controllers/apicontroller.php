@@ -1165,6 +1165,54 @@ class apiController {
 
     }
 
+    public function acceptpurchaserequest()
+    {
+        $data = json_decode(file_get_contents("php://input"),true);
+        if($data!=null && $data['id']){
+            $this->loadModel('User');
+            $id = $data['id'];
+            $info = mysqli_fetch_array(mysqli_query($this->conn,"SELECT * FROM buy_requests WHERE id='$id'"));
+            $created = gmdate("Y-m-d H:i:s");
+
+            if($info){
+                $plan = $info['plan'];
+                $user_id = $info['user_id'];
+
+                $update_user['id'] = $user_id;
+                $update_user['plan'] = $plan;
+
+                $delete_qry = "DELETE FROM buy_requests WHERE id='$id'";
+
+                if($this->User->update($update_user) && $this->conn->query($delete_qry)){
+                    $output['code']="200";
+                    $output['msg']="success";
+
+                }else{
+                    $output['code'] = "101";
+                    $output['msg'] = "error";
+                }
+
+            }else{
+                $output['code'] = "101";
+                $output['msg'] = "error";
+            }
+
+        }else{
+            empty_data();
+        }
+
+    }
+
+    public function deletepurchaserequest()
+    {
+        $data = json_decode(file_get_contents("php://input"),true);
+        if($data!=null && $data['id']){
+            $this->loadModel('AdminWallets');
+
+        }
+
+    }
+
 
 }
 
