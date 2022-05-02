@@ -13,10 +13,11 @@ class Plan {
             $price = $data['price'];
             $package = $data['package'];
             $tspd = $data['true_speed'];
+            $limit = $data['withdrawal_limit'];
             $created = gmdate("Y-m-d H:i:s");
             
-            $qry = "INSERT INTO plans(id, name, algo, speed, duration, earning, price, package, true_speed, created)
-                        VALUES ('0','$name','$algo','$speed','$speed','$earning','$price','$package','$tspd','$created')";
+            $qry = "INSERT INTO plans(id, name, algo, speed, duration, earning, price, package, true_speed, withdrawal_limit, created)
+                        VALUES ('0','$name','$algo','$speed','$speed','$earning','$price','$package','$tspd','$limit','$created')";
 
             if($this->conn->query($qry)){
                 return true;
@@ -87,7 +88,7 @@ class Plan {
             $current = $this->getdetails($data);
             $name = $current['name'];$algo = $current['algo'];$speed = $current['speed'];
             $duration = $current['duration'];$earning = $current['earning'];$price = $current['price'];
-            $package = $current['package'];$tspd = $current['true_speed'];
+            $package = $current['package']; $limit =$current['withdrawal_limit']; $tspd = $current['true_speed'];
 
             if(isset($data['name'])){
                 $name = $data['name'];
@@ -105,10 +106,12 @@ class Plan {
                 $package =$data['package'];
             } if(isset($data['true_speed'])){
                 $tspd =$data['true_speed'];
+            }if(isset($data['withdrawal_limit'])){
+                $limit = $data['withdrawal_limit'];
             }
 
             $qry = "UPDATE plans SET name='$name', algo='$algo', speed='$speed', duration='$duration', earning='$earning'
-            , price='$price', package='$package', true_speed='$tspd' WHERE id='$id'";
+            , price='$price', package='$package', true_speed='$tspd', withdrawal_limit='$limit' WHERE id='$id'";
 
             if($this->conn->query($qry)){
                 return true;
