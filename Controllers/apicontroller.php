@@ -310,12 +310,27 @@ class apiController {
 
     public function getallplans() //200 success, 201 no plan, 101 fail server error
     {
+        $data = json_decode(file_get_contents("php://input"),true);
+
         $this->loadModel('Plan');
         $plans = $this->Plan->getall();
 
         if($plans){
+            if($data!=null && isset($data['admin'])){
+                $output['msg'] = $plans;
+
+            }else{
+                for($i=0;$i<count($plans);$i++){
+                    if($plans[$i]['id']!='1'){
+                        $finalPLans[]=$plans[$i];
+                    }
+
+                }
+
+                $output['msg'] = $finalPLans;
+
+            }
             $output['code'] = "200";
-            $output['msg'] = $plans;
 
         }else if($this->conn){
             $output['code'] = "201";
@@ -481,7 +496,7 @@ class apiController {
 
     public function gettrailplandetails()
     {
-        $qry = mysqli_query($this->conn,"SELECT * FROM free_plan WHERE id='1'");
+        $qry = mysqli_query($this->conn,"SELECT * FROM plans WHERE id='1'");
 
         $res = mysqli_fetch_array($qry,1);
 

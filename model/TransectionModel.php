@@ -112,7 +112,7 @@ class Transection{
 
             if(isset($data['id'])){
                 $id = $data['id'];
-                $qry = mysqli_query($this->conn,"SELECT * FROM transections WHERE user_id='$id' AND status='1' ORDER BY id DESC");
+                $qry = mysqli_query($this->conn,"SELECT * FROM transections WHERE status='1' ORDER BY id DESC");
 
             }else{
                 empty_data();
