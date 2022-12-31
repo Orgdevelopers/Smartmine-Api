@@ -4,10 +4,10 @@
 
 
 $hostname = "localhost";
-$database   = "smartmine_db";
-$db_user = 'smartmine_db';
-$password = 'smartmine_db';
-$portt = 3307;
+$database   = "test";
+$db_user = 'root';
+$password = '';
+$portt = 3306;
 
 //email - 
 $smtp_name = "Smartmine Customer Support";

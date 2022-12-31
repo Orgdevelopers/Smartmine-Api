@@ -4,17 +4,20 @@ class apiController {
 
     public function init() //error code 499 means incomplete params
     {
-        $request = str_replace('/','',$_SERVER['PATH_INFO']);
+        //create database connection
+        $db = new Database();
+        $this->conn = $db->getConnection();
+        
+    }
 
+    public function handle_request($request){
         try {
-            $db = new Database();
-            $this->conn = $db->getConnection();
+            
             $this->$request();
 
         } catch (\Throwable $th) {
             $this->no_method($th);
         }
-        
     }
 
     public function sendverificationemail() //200= success, 201 = fail, 111= email exists, 101=username exists, 1001=error
@@ -695,7 +698,7 @@ class apiController {
 
     public function no_method($th){
         $echo['code']='10101';
-        $echo['msg']="method desen't exists:-".str_replace('/','',$_SERVER['PATH_INFO']).$th;
+        $echo['msg']="method desen't exists:-".$th;
         echo json_encode($echo);
         die;
     }
